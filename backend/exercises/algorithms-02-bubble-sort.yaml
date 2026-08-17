@@ -1,0 +1,44 @@
+id: algorithms-02-bubble-sort
+title: Bubble Sort
+topic: algorithms
+difficulty: intermediate
+order: 2
+description: |
+  ## Bubble Sort
+
+  Write a function `bubble_sort(items)` that returns a **new** list with
+  the elements of `items` sorted in ascending order, implementing the
+  bubble sort algorithm yourself (repeatedly swap adjacent out-of-order
+  elements) rather than calling `sorted()` or `.sort()`.
+function_name: bubble_sort
+starter_code: |
+  def bubble_sort(items):
+      """Return a new list sorted in ascending order using bubble sort."""
+      # TODO: implement (don't use sorted()/list.sort())
+      raise NotImplementedError
+solution: |
+  def bubble_sort(items):
+      result = list(items)
+      n = len(result)
+      for i in range(n):
+          for j in range(n - 1 - i):
+              if result[j] > result[j + 1]:
+                  result[j], result[j + 1] = result[j + 1], result[j]
+      return result
+hints:
+  - "Work on a copy of the list so you don't mutate the caller's list unexpectedly: result = list(items)."
+  - "Bubble sort repeatedly walks the list, swapping any adjacent pair that's out of order."
+  - "You can swap two list elements in one line: result[j], result[j + 1] = result[j + 1], result[j]"
+test_cases:
+  - name: unsorted list
+    args: [[5, 3, 1, 4, 2]]
+    expected: [1, 2, 3, 4, 5]
+  - name: already sorted
+    args: [[1, 2, 3]]
+    expected: [1, 2, 3]
+  - name: empty
+    args: [[]]
+    expected: []
+  - name: single element
+    args: [[1]]
+    expected: [1]

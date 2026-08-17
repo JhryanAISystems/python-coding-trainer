@@ -1,0 +1,52 @@
+id: error-handling-02-validate-input
+title: Validate a Positive Integer
+topic: error_handling
+difficulty: intermediate
+order: 2
+description: |
+  ## Validate a Positive Integer
+
+  Write a function `parse_positive_int(text)` that parses a string into
+  a positive integer and returns it.
+
+  If `text` cannot be parsed as an integer, or the resulting integer is
+  not positive (greater than zero), raise a `ValueError` with the message
+  `"must be a positive integer"`.
+function_name: parse_positive_int
+starter_code: |
+  def parse_positive_int(text):
+      """Parse text as a positive int, or raise ValueError('must be a positive integer')."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def parse_positive_int(text):
+      try:
+          value = int(text)
+      except ValueError:
+          raise ValueError("must be a positive integer")
+      if value <= 0:
+          raise ValueError("must be a positive integer")
+      return value
+hints:
+  - "int(text) raises ValueError if text isn't a valid integer string -- you can let that propagate or catch and re-raise it."
+  - "After parsing, check that the value is greater than zero and raise ValueError if not."
+  - "Use `raise ValueError(\"must be a positive integer\")` to raise with a specific message."
+test_cases:
+  - name: valid input
+    args: ["5"]
+    expected: 5
+  - name: valid larger input
+    args: ["42"]
+    expected: 42
+  - name: negative number
+    args: ["-1"]
+    expect_error: true
+    error_type: ValueError
+  - name: not a number
+    args: ["abc"]
+    expect_error: true
+    error_type: ValueError
+  - name: zero
+    args: ["0"]
+    expect_error: true
+    error_type: ValueError

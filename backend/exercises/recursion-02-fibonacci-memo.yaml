@@ -1,0 +1,48 @@
+id: recursion-02-fibonacci-memo
+title: Fibonacci with Memoization
+topic: recursion
+difficulty: advanced
+order: 2
+description: |
+  ## Fibonacci with Memoization
+
+  Write a function `fibonacci(n)` that returns the `n`-th Fibonacci
+  number (0-indexed: `fibonacci(0) == 0`, `fibonacci(1) == 1`), using
+  **recursion with memoization** so it stays fast even for `n` around 30.
+
+  A plain recursive Fibonacci without memoization is exponential and will
+  time out on larger inputs -- cache results you've already computed.
+function_name: fibonacci
+starter_code: |
+  def fibonacci(n, _cache=None):
+      """Return the n-th Fibonacci number using memoized recursion."""
+      # TODO: implement, caching results so repeated calls are fast
+      raise NotImplementedError
+solution: |
+  def fibonacci(n, _cache=None):
+      if _cache is None:
+          _cache = {}
+      if n in (0, 1):
+          return n
+      if n in _cache:
+          return _cache[n]
+      result = fibonacci(n - 1, _cache) + fibonacci(n - 2, _cache)
+      _cache[n] = result
+      return result
+hints:
+  - "Base cases: fibonacci(0) == 0 and fibonacci(1) == 1."
+  - "Store previously computed results in a dictionary so you never recompute the same n twice."
+  - "A mutable default argument like a dict passed through recursive calls is a common way to thread a cache without a global variable."
+test_cases:
+  - name: base case 0
+    args: [0]
+    expected: 0
+  - name: base case 1
+    args: [1]
+    expected: 1
+  - name: n=10
+    args: [10]
+    expected: 55
+  - name: n=30
+    args: [30]
+    expected: 832040

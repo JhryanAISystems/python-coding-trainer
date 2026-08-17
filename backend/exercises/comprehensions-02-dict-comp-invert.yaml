@@ -1,0 +1,31 @@
+id: comprehensions-02-dict-comp-invert
+title: Invert a Dictionary
+topic: comprehensions
+difficulty: intermediate
+order: 2
+description: |
+  ## Invert a Dictionary
+
+  Write a function `invert_dict(d)` that returns a new dictionary with
+  the keys and values of `d` swapped, using a **dict comprehension**.
+  You can assume all values in `d` are unique (and hashable), so the
+  inversion is well-defined.
+function_name: invert_dict
+starter_code: |
+  def invert_dict(d):
+      """Return a new dict with keys and values swapped."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def invert_dict(d):
+      return {value: key for key, value in d.items()}
+hints:
+  - "A dict comprehension looks like {value_expr: key_expr for key, value in d.items()}."
+  - "d.items() gives you (key, value) pairs to iterate over."
+test_cases:
+  - name: simple mapping
+    args: [{a: 1, b: 2}]
+    expected: {1: a, 2: b}
+  - name: empty dict
+    args: [{}]
+    expected: {}

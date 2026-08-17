@@ -1,0 +1,35 @@
+id: recursion-01-factorial
+title: Factorial (Recursive)
+topic: recursion
+difficulty: beginner
+order: 1
+description: |
+  ## Factorial (Recursive)
+
+  Write a function `factorial(n)` that computes `n!` (n factorial)
+  **recursively** -- no loops allowed. Recall that `0! = 1` and
+  `n! = n * (n-1)!` for `n > 0`.
+function_name: factorial
+starter_code: |
+  def factorial(n):
+      """Compute n! recursively."""
+      # TODO: implement (no loops!)
+      raise NotImplementedError
+solution: |
+  def factorial(n):
+      if n == 0:
+          return 1
+      return n * factorial(n - 1)
+hints:
+  - "Every recursive function needs a base case -- what is factorial(0)?"
+  - "The recursive case is n * factorial(n - 1)."
+test_cases:
+  - name: base case
+    args: [0]
+    expected: 1
+  - name: small number
+    args: [5]
+    expected: 120
+  - name: larger number
+    args: [7]
+    expected: 5040

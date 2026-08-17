@@ -1,0 +1,38 @@
+id: data-structures-01-list-dedupe
+title: Deduplicate a List
+topic: data_structures
+difficulty: beginner
+order: 1
+description: |
+  ## Deduplicate a List
+
+  Write a function `dedupe_preserve_order(items)` that removes duplicate
+  values from a list while preserving the order of first occurrence.
+function_name: dedupe_preserve_order
+starter_code: |
+  def dedupe_preserve_order(items):
+      """Return items with duplicates removed, keeping first-occurrence order."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def dedupe_preserve_order(items):
+      seen = set()
+      result = []
+      for item in items:
+          if item not in seen:
+              seen.add(item)
+              result.append(item)
+      return result
+hints:
+  - "A plain set() would dedupe but lose the original order."
+  - "Track what you've already seen with a set, and build a new list only appending unseen items."
+test_cases:
+  - name: with duplicates
+    args: [[1, 2, 2, 3, 1]]
+    expected: [1, 2, 3]
+  - name: no duplicates
+    args: [[5, 4, 3]]
+    expected: [5, 4, 3]
+  - name: empty
+    args: [[]]
+    expected: []

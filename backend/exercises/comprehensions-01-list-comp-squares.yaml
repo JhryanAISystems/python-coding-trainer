@@ -1,0 +1,34 @@
+id: comprehensions-01-list-comp-squares
+title: Squares of Even Numbers
+topic: comprehensions
+difficulty: beginner
+order: 1
+description: |
+  ## Squares of Even Numbers
+
+  Write a function `even_squares(n)` that returns a list of the squares
+  of every even number from 0 to `n` (inclusive), using a **list
+  comprehension**.
+function_name: even_squares
+starter_code: |
+  def even_squares(n):
+      """Return squares of even numbers from 0 to n inclusive, via a list comprehension."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def even_squares(n):
+      return [i * i for i in range(n + 1) if i % 2 == 0]
+hints:
+  - "A list comprehension has the shape [expression for item in iterable if condition]."
+  - "range(n + 1) includes n itself."
+  - "Filter for even numbers with `if i % 2 == 0`, and square with i * i."
+test_cases:
+  - name: n=10
+    args: [10]
+    expected: [0, 4, 16, 36, 64, 100]
+  - name: n=0
+    args: [0]
+    expected: [0]
+  - name: n=5
+    args: [5]
+    expected: [0, 4, 16]

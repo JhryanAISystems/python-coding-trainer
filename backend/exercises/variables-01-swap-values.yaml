@@ -1,0 +1,36 @@
+id: variables-01-swap-values
+title: Swap Two Values
+topic: variables
+difficulty: beginner
+order: 1
+description: |
+  ## Swap Two Values
+
+  Write a function `swap_pair(a, b)` that returns the two values swapped,
+  as a tuple `(b, a)`.
+
+  This is a classic first exercise in variables and multiple assignment —
+  Python lets you assign several variables at once with a single line.
+function_name: swap_pair
+starter_code: |
+  def swap_pair(a, b):
+      """Return (b, a) -- the two values swapped."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def swap_pair(a, b):
+      return b, a
+hints:
+  - "Python lets you assign multiple variables in one line: a, b = b, a"
+  - "You can return two values separated by a comma and Python packs them into a tuple."
+  - "return b, a"
+test_cases:
+  - name: integers
+    args: [1, 2]
+    expected: [2, 1]
+  - name: strings
+    args: ["x", "y"]
+    expected: ["y", "x"]
+  - name: booleans
+    args: [true, false]
+    expected: [false, true]

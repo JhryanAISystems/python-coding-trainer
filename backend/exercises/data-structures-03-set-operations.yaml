@@ -1,0 +1,38 @@
+id: data-structures-03-set-operations
+title: Common and Unique Elements
+topic: data_structures
+difficulty: intermediate
+order: 3
+description: |
+  ## Common and Unique Elements
+
+  Write a function `common_and_unique(list_a, list_b)` that returns a tuple
+  of two sorted lists:
+
+  1. Elements that appear in **both** `list_a` and `list_b`
+  2. Elements that appear in **only one** of the two lists
+
+  Use Python's `set` operations to solve this.
+function_name: common_and_unique
+starter_code: |
+  def common_and_unique(list_a, list_b):
+      """Return (sorted common elements, sorted elements unique to either list)."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def common_and_unique(list_a, list_b):
+      set_a, set_b = set(list_a), set(list_b)
+      common = sorted(set_a & set_b)
+      unique = sorted(set_a ^ set_b)
+      return common, unique
+hints:
+  - "Convert both lists to sets first: set(list_a), set(list_b)."
+  - "Set intersection (&) gives common elements; symmetric difference (^) gives elements unique to either side."
+  - "Sort the results before returning them since sets have no guaranteed order."
+test_cases:
+  - name: overlapping lists
+    args: [[1, 2, 3], [2, 3, 4]]
+    expected: [[2, 3], [1, 4]]
+  - name: disjoint lists
+    args: [[1, 2], [3, 4]]
+    expected: [[], [1, 2, 3, 4]]

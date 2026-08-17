@@ -1,0 +1,67 @@
+id: decorators-02-retry-decorator
+title: Retry Decorator
+topic: decorators
+difficulty: advanced
+order: 2
+description: |
+  ## Retry Decorator
+
+  Write a parametrized decorator `retry(times)` -- a decorator *factory*
+  that returns a decorator -- which retries the wrapped function up to
+  `times` times if it raises an exception, and re-raises the last
+  exception if every attempt fails.
+
+  It's already applied below to `flaky()`, which fails on its first two
+  calls and succeeds on the third. Once your decorator works,
+  `flaky()` should return `"succeeded on attempt 3"`.
+function_name: flaky
+starter_code: |
+  attempts = {"count": 0}
+
+
+  def retry(times):
+      """Decorator factory: retry the wrapped function up to `times` times on exception."""
+      def decorator(func):
+          # TODO: implement a wrapper that retries func() on exception
+          raise NotImplementedError
+      return decorator
+
+
+  @retry(3)
+  def flaky():
+      attempts["count"] += 1
+      if attempts["count"] < 3:
+          raise ValueError("not yet")
+      return f"succeeded on attempt {attempts['count']}"
+solution: |
+  attempts = {"count": 0}
+
+
+  def retry(times):
+      def decorator(func):
+          def wrapper(*args, **kwargs):
+              last_exc = None
+              for _ in range(times):
+                  try:
+                      return func(*args, **kwargs)
+                  except Exception as exc:
+                      last_exc = exc
+              raise last_exc
+          return wrapper
+      return decorator
+
+
+  @retry(3)
+  def flaky():
+      attempts["count"] += 1
+      if attempts["count"] < 3:
+          raise ValueError("not yet")
+      return f"succeeded on attempt {attempts['count']}"
+hints:
+  - "retry(times) is a factory: it takes times and returns a decorator, which itself takes func and returns a wrapper."
+  - "Inside the wrapper, loop up to `times` times, calling func(*args, **kwargs) inside a try/except and returning immediately on success."
+  - "If every attempt fails, re-raise the last caught exception after the loop."
+test_cases:
+  - name: succeeds on third attempt
+    args: []
+    expected: "succeeded on attempt 3"

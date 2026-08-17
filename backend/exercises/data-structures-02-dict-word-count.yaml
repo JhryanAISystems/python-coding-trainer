@@ -1,0 +1,39 @@
+id: data-structures-02-dict-word-count
+title: Word Frequency Counter
+topic: data_structures
+difficulty: intermediate
+order: 2
+description: |
+  ## Word Frequency Counter
+
+  Write a function `word_count(text)` that returns a dictionary mapping
+  each lowercase word in `text` to the number of times it appears.
+
+  Split on whitespace, and strip the punctuation characters
+  `.`, `,`, `!`, and `?` from each word before counting.
+function_name: word_count
+starter_code: |
+  def word_count(text):
+      """Return a dict of lowercase word -> count, ignoring .,!? punctuation."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def word_count(text):
+      counts = {}
+      for raw_word in text.split():
+          word = raw_word.lower().strip(".,!?")
+          if not word:
+              continue
+          counts[word] = counts.get(word, 0) + 1
+      return counts
+hints:
+  - "text.split() splits on any whitespace and handles multiple spaces automatically."
+  - "str.strip('.,!?') removes those characters from the start and end of a word."
+  - "Use dict.get(word, 0) + 1 to increment a count that might not exist yet."
+test_cases:
+  - name: simple sentence
+    args: ["the cat sat on the mat"]
+    expected: {the: 2, cat: 1, sat: 1, "on": 1, mat: 1}
+  - name: punctuation
+    args: ["Hi! Hi. hi?"]
+    expected: {hi: 3}

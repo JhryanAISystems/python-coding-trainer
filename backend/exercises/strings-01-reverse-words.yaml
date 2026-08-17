@@ -1,0 +1,34 @@
+id: strings-01-reverse-words
+title: Reverse the Words in a Sentence
+topic: strings
+difficulty: beginner
+order: 1
+description: |
+  ## Reverse the Words in a Sentence
+
+  Write a function `reverse_words(sentence)` that reverses the order of
+  words in a sentence, keeping the words themselves unchanged and
+  separated by single spaces.
+function_name: reverse_words
+starter_code: |
+  def reverse_words(sentence):
+      """Return the sentence with word order reversed."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def reverse_words(sentence):
+      return " ".join(reversed(sentence.split()))
+hints:
+  - "sentence.split() breaks the sentence into a list of words."
+  - "You can reverse a list with reversed(list) or list[::-1]."
+  - "\" \".join(words) glues a list of words back into a single string."
+test_cases:
+  - name: two words
+    args: ["hello world"]
+    expected: "world hello"
+  - name: several words
+    args: ["the quick brown fox"]
+    expected: "fox brown quick the"
+  - name: single word
+    args: ["hello"]
+    expected: "hello"

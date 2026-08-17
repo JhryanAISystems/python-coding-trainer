@@ -1,0 +1,36 @@
+id: functions-02-default-args-greet
+title: Greeting with Defaults
+topic: functions
+difficulty: beginner
+order: 2
+description: |
+  ## Greeting with Defaults
+
+  Write a function `greet(name, greeting="Hello", punctuation="!")` that
+  returns a greeting string in the form `f"{greeting}, {name}{punctuation}"`.
+
+  This exercise practices default argument values and keyword arguments.
+function_name: greet
+starter_code: |
+  def greet(name, greeting="Hello", punctuation="!"):
+      """Return a formatted greeting."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def greet(name, greeting="Hello", punctuation="!"):
+      return f"{greeting}, {name}{punctuation}"
+hints:
+  - "Use an f-string to combine the three pieces: f\"{greeting}, {name}{punctuation}\""
+  - "The defaults are already declared in the function signature -- you don't need to handle missing arguments yourself."
+test_cases:
+  - name: defaults
+    args: ["Ana"]
+    expected: "Hello, Ana!"
+  - name: custom greeting
+    args: ["Sam"]
+    kwargs: {greeting: "Hi"}
+    expected: "Hi, Sam!"
+  - name: custom punctuation
+    args: ["Lee"]
+    kwargs: {punctuation: "."}
+    expected: "Hello, Lee."

@@ -1,0 +1,79 @@
+id: oop-01-bank-account-class
+title: Bank Account Class
+topic: oop
+difficulty: intermediate
+order: 1
+description: |
+  ## Bank Account Class
+
+  Implement a `BankAccount` class with:
+
+  - a constructor `__init__(self, balance)` that sets the starting balance
+  - a `deposit(self, amount)` method that adds `amount` to the balance
+  - a `withdraw(self, amount)` method that subtracts `amount` from the
+    balance **only if** there are sufficient funds (otherwise the balance
+    is unchanged)
+
+  Then write a function `run_account_operations(initial_balance, operations)`
+  that creates a `BankAccount` with `initial_balance`, applies each
+  `(action, amount)` pair in `operations` (where `action` is `"deposit"`
+  or `"withdraw"`), and returns the final balance.
+function_name: run_account_operations
+starter_code: |
+  class BankAccount:
+      def __init__(self, balance):
+          self.balance = balance
+
+      def deposit(self, amount):
+          # TODO: implement
+          raise NotImplementedError
+
+      def withdraw(self, amount):
+          # TODO: implement -- do nothing if amount > self.balance
+          raise NotImplementedError
+
+
+  def run_account_operations(initial_balance, operations):
+      """Apply a list of (action, amount) operations and return the final balance."""
+      account = BankAccount(initial_balance)
+      for action, amount in operations:
+          if action == "deposit":
+              account.deposit(amount)
+          elif action == "withdraw":
+              account.withdraw(amount)
+      return account.balance
+solution: |
+  class BankAccount:
+      def __init__(self, balance):
+          self.balance = balance
+
+      def deposit(self, amount):
+          self.balance += amount
+
+      def withdraw(self, amount):
+          if amount <= self.balance:
+              self.balance -= amount
+
+
+  def run_account_operations(initial_balance, operations):
+      account = BankAccount(initial_balance)
+      for action, amount in operations:
+          if action == "deposit":
+              account.deposit(amount)
+          elif action == "withdraw":
+              account.withdraw(amount)
+      return account.balance
+hints:
+  - "deposit just adds to self.balance."
+  - "withdraw should check `if amount <= self.balance:` before subtracting -- otherwise leave the balance unchanged."
+  - "self.balance persists between method calls because it's stored on the instance."
+test_cases:
+  - name: deposit then withdraw
+    args: [100, [["deposit", 50], ["withdraw", 30]]]
+    expected: 120
+  - name: overdraw is ignored
+    args: [50, [["withdraw", 1000]]]
+    expected: 50
+  - name: multiple deposits
+    args: [0, [["deposit", 10], ["deposit", 20], ["deposit", 5]]]
+    expected: 35

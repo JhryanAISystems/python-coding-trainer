@@ -1,0 +1,53 @@
+id: control-flow-02-grade-classifier
+title: Letter Grade Classifier
+topic: control_flow
+difficulty: beginner
+order: 2
+description: |
+  ## Letter Grade Classifier
+
+  Write a function `letter_grade(score)` that converts a numeric score
+  (0-100) into a letter grade:
+
+  - 90 and above -> `"A"`
+  - 80-89 -> `"B"`
+  - 70-79 -> `"C"`
+  - 60-69 -> `"D"`
+  - below 60 -> `"F"`
+function_name: letter_grade
+starter_code: |
+  def letter_grade(score):
+      """Return the letter grade for a numeric score."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def letter_grade(score):
+      if score >= 90:
+          return "A"
+      elif score >= 80:
+          return "B"
+      elif score >= 70:
+          return "C"
+      elif score >= 60:
+          return "D"
+      else:
+          return "F"
+hints:
+  - "Use a chain of if / elif / else, checking from the highest threshold down."
+  - "Each branch just needs a >= comparison against the cutoff for that grade."
+test_cases:
+  - name: A grade
+    args: [95]
+    expected: "A"
+  - name: boundary B
+    args: [80]
+    expected: "B"
+  - name: C grade
+    args: [75]
+    expected: "C"
+  - name: D grade
+    args: [65]
+    expected: "D"
+  - name: F grade
+    args: [40]
+    expected: "F"

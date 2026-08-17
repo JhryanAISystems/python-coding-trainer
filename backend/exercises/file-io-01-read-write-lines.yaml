@@ -1,0 +1,46 @@
+id: file-io-01-read-write-lines
+title: Reading and Writing Files
+topic: file_io
+difficulty: intermediate
+order: 1
+description: |
+  ## Reading and Writing Files
+
+  Write a function `count_lines_containing(lines, substring)` that:
+
+  1. Writes each string in `lines` as its own line to a file named
+     `"data.txt"` in the current directory.
+  2. Reads `"data.txt"` back in.
+  3. Returns the number of lines that contain `substring`
+     (case-insensitive).
+
+  This exercise practices basic file I/O with Python's `open()`.
+function_name: count_lines_containing
+starter_code: |
+  def count_lines_containing(lines, substring):
+      """Write lines to data.txt, read it back, and count matches for substring."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def count_lines_containing(lines, substring):
+      with open("data.txt", "w") as f:
+          for line in lines:
+              f.write(line + "\n")
+
+      count = 0
+      with open("data.txt") as f:
+          for line in f:
+              if substring.lower() in line.lower():
+                  count += 1
+      return count
+hints:
+  - "Use `with open('data.txt', 'w') as f:` to write, and a separate `with open('data.txt') as f:` to read."
+  - "Iterating over an open file object with a for loop gives you one line at a time."
+  - "Lowercase both the line and the substring before checking `in` to make the match case-insensitive."
+test_cases:
+  - name: some matches
+    args: [["apple", "banana", "Apple pie"], "apple"]
+    expected: 2
+  - name: no matches
+    args: [["a", "b", "c"], "z"]
+    expected: 0

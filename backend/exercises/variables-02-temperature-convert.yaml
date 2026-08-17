@@ -1,0 +1,39 @@
+id: variables-02-temperature-convert
+title: Celsius to Fahrenheit
+topic: variables
+difficulty: beginner
+order: 2
+description: |
+  ## Celsius to Fahrenheit
+
+  Write a function `celsius_to_fahrenheit(celsius)` that converts a
+  Celsius temperature to Fahrenheit using the formula:
+
+  `F = C * 9/5 + 32`
+
+  Round the result to 1 decimal place.
+function_name: celsius_to_fahrenheit
+starter_code: |
+  def celsius_to_fahrenheit(celsius):
+      """Convert Celsius to Fahrenheit, rounded to 1 decimal place."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def celsius_to_fahrenheit(celsius):
+      return round(celsius * 9 / 5 + 32, 1)
+hints:
+  - "The conversion formula is F = C * 9/5 + 32."
+  - "Use Python's built-in round(value, 1) to round to one decimal place."
+test_cases:
+  - name: freezing
+    args: [0]
+    expected: 32.0
+  - name: boiling
+    args: [100]
+    expected: 212.0
+  - name: body temp
+    args: [37]
+    expected: 98.6
+  - name: negative
+    args: [-40]
+    expected: -40.0

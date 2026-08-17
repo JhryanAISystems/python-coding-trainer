@@ -1,0 +1,101 @@
+id: oop-02-shape-inheritance
+title: Shape Inheritance
+topic: oop
+difficulty: advanced
+order: 2
+description: |
+  ## Shape Inheritance
+
+  Implement a base class `Shape` with an `area()` method that raises
+  `NotImplementedError`, and two subclasses:
+
+  - `Circle(radius)` whose `area()` returns `math.pi * radius ** 2`
+  - `Rectangle(width, height)` whose `area()` returns `width * height`
+
+  Then write a function `total_area(shapes)` that takes a list of shape
+  specs (dicts like `{"type": "circle", "radius": 2}` or
+  `{"type": "rectangle", "width": 3, "height": 4}`), builds the
+  corresponding shape objects, and returns the sum of their areas rounded
+  to 2 decimal places.
+function_name: total_area
+starter_code: |
+  import math
+
+
+  class Shape:
+      def area(self):
+          raise NotImplementedError
+
+
+  class Circle(Shape):
+      def __init__(self, radius):
+          self.radius = radius
+
+      def area(self):
+          # TODO: implement
+          raise NotImplementedError
+
+
+  class Rectangle(Shape):
+      def __init__(self, width, height):
+          self.width = width
+          self.height = height
+
+      def area(self):
+          # TODO: implement
+          raise NotImplementedError
+
+
+  def total_area(shapes):
+      """Sum the areas of a list of shape spec dicts, rounded to 2 decimal places."""
+      # TODO: build Circle/Rectangle objects from `shapes` and sum their areas
+      raise NotImplementedError
+solution: |
+  import math
+
+
+  class Shape:
+      def area(self):
+          raise NotImplementedError
+
+
+  class Circle(Shape):
+      def __init__(self, radius):
+          self.radius = radius
+
+      def area(self):
+          return math.pi * self.radius ** 2
+
+
+  class Rectangle(Shape):
+      def __init__(self, width, height):
+          self.width = width
+          self.height = height
+
+      def area(self):
+          return self.width * self.height
+
+
+  def total_area(shapes):
+      total = 0
+      for spec in shapes:
+          if spec["type"] == "circle":
+              shape = Circle(spec["radius"])
+          else:
+              shape = Rectangle(spec["width"], spec["height"])
+          total += shape.area()
+      return round(total, 2)
+hints:
+  - "Circle.area() is math.pi * self.radius ** 2 (import math at the top)."
+  - "Rectangle.area() is just self.width * self.height."
+  - "In total_area, branch on spec['type'] to decide which class to construct, then call .area() on each and sum, rounding at the end."
+test_cases:
+  - name: single circle
+    args: [[{type: circle, radius: 1}]]
+    expected: 3.14
+  - name: single rectangle
+    args: [[{type: rectangle, width: 2, height: 3}]]
+    expected: 6.0
+  - name: mixed shapes
+    args: [[{type: circle, radius: 1}, {type: rectangle, width: 2, height: 3}]]
+    expected: 9.14

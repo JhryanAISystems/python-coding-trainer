@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend-data:/app/data
+    environment:
+      DATABASE_URL: sqlite:///./data/trainer.db
+      FRONTEND_ORIGIN: http://localhost:5173
+      # Set these to enable optional AI tutor mode (never required):
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    networks:
+      - trainer-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - trainer-net
+
+networks:
+  trainer-net:
+    driver: bridge
+
+volumes:
+  backend-data:

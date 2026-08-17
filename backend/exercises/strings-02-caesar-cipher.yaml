@@ -1,0 +1,44 @@
+id: strings-02-caesar-cipher
+title: Caesar Cipher
+topic: strings
+difficulty: intermediate
+order: 2
+description: |
+  ## Caesar Cipher
+
+  Write a function `caesar_encrypt(text, shift)` that shifts every
+  letter in `text` forward by `shift` positions in the alphabet, wrapping
+  around from `z` back to `a` (and `Z` back to `A`). Preserve each
+  letter's case, and leave non-letter characters (spaces, punctuation)
+  unchanged.
+function_name: caesar_encrypt
+starter_code: |
+  def caesar_encrypt(text, shift):
+      """Shift each letter in text forward by `shift` positions, wrapping around."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def caesar_encrypt(text, shift):
+      result = []
+      for ch in text:
+          if ch.isupper():
+              result.append(chr((ord(ch) - ord("A") + shift) % 26 + ord("A")))
+          elif ch.islower():
+              result.append(chr((ord(ch) - ord("a") + shift) % 26 + ord("a")))
+          else:
+              result.append(ch)
+      return "".join(result)
+hints:
+  - "ord(ch) gives a character's numeric code; chr(code) converts back to a character."
+  - "Shift within the alphabet by subtracting the base letter ('a' or 'A'), adding shift, taking % 26, then adding the base back."
+  - "Use ch.isupper() / ch.islower() to preserve case, and leave anything else (spaces, punctuation) untouched."
+test_cases:
+  - name: simple shift
+    args: ["abc", 1]
+    expected: "bcd"
+  - name: wraparound
+    args: ["XYZ", 2]
+    expected: "ZAB"
+  - name: mixed with punctuation
+    args: ["Hello, World!", 3]
+    expected: "Khoor, Zruog!"

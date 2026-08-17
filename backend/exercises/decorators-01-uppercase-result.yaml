@@ -1,0 +1,47 @@
+id: decorators-01-uppercase-result
+title: Result-Transforming Decorator
+topic: decorators
+difficulty: advanced
+order: 1
+description: |
+  ## Result-Transforming Decorator
+
+  Write a decorator `uppercase_result(func)` that wraps a function and
+  uppercases its string return value.
+
+  It's already applied below to `shout(text)`, which returns
+  `f"{text}!"` -- once your decorator works, `shout("hello")` should
+  return `"HELLO!"`.
+function_name: shout
+starter_code: |
+  def uppercase_result(func):
+      """Decorator: uppercase the wrapped function's string return value."""
+      # TODO: implement the wrapper function and return it
+      raise NotImplementedError
+
+
+  @uppercase_result
+  def shout(text):
+      return f"{text}!"
+solution: |
+  def uppercase_result(func):
+      def wrapper(*args, **kwargs):
+          result = func(*args, **kwargs)
+          return result.upper()
+      return wrapper
+
+
+  @uppercase_result
+  def shout(text):
+      return f"{text}!"
+hints:
+  - "A decorator is a function that takes a function and returns a new function (the wrapper)."
+  - "Inside the wrapper, call the original func(*args, **kwargs) and transform its result before returning."
+  - "Don't forget uppercase_result must `return wrapper` -- that's what @uppercase_result replaces shout with."
+test_cases:
+  - name: basic word
+    args: ["hello"]
+    expected: "HELLO!"
+  - name: another word
+    args: ["go"]
+    expected: "GO!"

@@ -1,0 +1,38 @@
+id: functions-01-is-palindrome
+title: Palindrome Checker
+topic: functions
+difficulty: beginner
+order: 1
+description: |
+  ## Palindrome Checker
+
+  Write a function `is_palindrome(text)` that returns `True` if `text`
+  reads the same forwards and backwards, ignoring case and spaces, and
+  `False` otherwise.
+
+  For example, `"A man a plan a canal Panama"` is a palindrome once you
+  ignore case and spaces.
+function_name: is_palindrome
+starter_code: |
+  def is_palindrome(text):
+      """Return True if text is a palindrome, ignoring case and spaces."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def is_palindrome(text):
+      cleaned = text.lower().replace(" ", "")
+      return cleaned == cleaned[::-1]
+hints:
+  - "Normalize the string first: lowercase it and strip out spaces."
+  - "A string reversed with slicing is text[::-1]."
+  - "Compare the cleaned string to its reverse."
+test_cases:
+  - name: simple palindrome
+    args: ["Racecar"]
+    expected: true
+  - name: phrase palindrome
+    args: ["A man a plan a canal Panama"]
+    expected: true
+  - name: not a palindrome
+    args: ["hello"]
+    expected: false

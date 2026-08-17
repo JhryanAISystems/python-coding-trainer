@@ -1,0 +1,39 @@
+id: error-handling-01-safe-divide
+title: Safe Division
+topic: error_handling
+difficulty: beginner
+order: 1
+description: |
+  ## Safe Division
+
+  Write a function `safe_divide(a, b)` that returns `a / b`, but returns
+  `None` instead of raising an exception if the division is invalid --
+  for example, dividing by zero, or `b` not being a number.
+
+  Use a `try`/`except` block to catch `ZeroDivisionError` and `TypeError`.
+function_name: safe_divide
+starter_code: |
+  def safe_divide(a, b):
+      """Return a / b, or None if the division is invalid."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def safe_divide(a, b):
+      try:
+          return a / b
+      except (ZeroDivisionError, TypeError):
+          return None
+hints:
+  - "Wrap the division in a try block."
+  - "Dividing by zero raises ZeroDivisionError; dividing by a non-number raises TypeError."
+  - "You can catch multiple exception types at once: except (ZeroDivisionError, TypeError):"
+test_cases:
+  - name: normal division
+    args: [10, 2]
+    expected: 5.0
+  - name: divide by zero
+    args: [5, 0]
+    expected: null
+  - name: bad type
+    args: [5, "x"]
+    expected: null

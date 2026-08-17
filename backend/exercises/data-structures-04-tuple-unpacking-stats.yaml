@@ -1,0 +1,31 @@
+id: data-structures-04-tuple-unpacking-stats
+title: Min, Max, and Average
+topic: data_structures
+difficulty: beginner
+order: 4
+description: |
+  ## Min, Max, and Average
+
+  Write a function `min_max_avg(numbers)` that returns a tuple of
+  `(minimum, maximum, average)` for a non-empty list of numbers. Round the
+  average to 2 decimal places.
+function_name: min_max_avg
+starter_code: |
+  def min_max_avg(numbers):
+      """Return (min, max, average) for a list of numbers, average rounded to 2 dp."""
+      # TODO: implement
+      raise NotImplementedError
+solution: |
+  def min_max_avg(numbers):
+      return min(numbers), max(numbers), round(sum(numbers) / len(numbers), 2)
+hints:
+  - "Python has built-in min() and max() functions."
+  - "Average is sum(numbers) / len(numbers) -- remember to round it."
+  - "You can return three values as a tuple: return a, b, c"
+test_cases:
+  - name: basic
+    args: [[1, 2, 3, 4]]
+    expected: [1, 4, 2.5]
+  - name: single value
+    args: [[7]]
+    expected: [7, 7, 7.0]
