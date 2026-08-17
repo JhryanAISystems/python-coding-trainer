@@ -117,6 +117,11 @@ Recharts · React Router · Vitest + Testing Library
 
 ## Getting started
 
+**Prerequisites (Option 2 only):** Python 3.11+, Node.js 22.19+ (jsdom's
+bundled `undici` requires it — an older Node will fail when running the
+frontend test suite). Option 1 (Docker) has no host prerequisites beyond
+Docker itself.
+
 ### Option 1 — one command with Docker (recommended)
 
 ```bash
